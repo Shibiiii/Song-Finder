@@ -3,7 +3,8 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 100px;
-    background-image: url(/develop/images/geniusBackground.jpg);
+    background-image: url(/develop/images/genius-background.jpg);
+    background-repeat: no-repeat;
     background-size: cover;
 }
 
