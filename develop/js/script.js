@@ -66,8 +66,12 @@ function handleSearchFormSubmit(event) {
     return;
   }
 
-  
+  var queryString = './search-results.html?q=' + searchInputVal;
+
+  location.assign(queryString);
 }
+
+searchFormEl.addEventListener('submit', handleSearchFormSubmit);
 
 
 
