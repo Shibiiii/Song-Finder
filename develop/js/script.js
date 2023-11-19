@@ -5,40 +5,33 @@ var searchFormEl = document.querySelector('#search-form');
 function handleSearchFormSubmit(event) {
     event.preventDefault();
 
-    var searchInputVal = document.querySelector('#search-input').value;
-    var languageInputVal = document.querySelector('#language-input').value;
+    var countryInputVal = document.querySelector('#countryname').value;
+    var cityInputVal = document.querySelector('#cityname').value;
 
-    if (!searchInputVal) {
-        console.error('Input needed to continue');
+    if (!countryInputValInputVal) {
+        console.error('Country needed to continue');
         return;
     }
-    if (!languageInputVal) {
-    console.error('Language needed to continue');
+    if (!cityInputValInputVal) {
+    console.error('City needed to continue');
         return;
     }
 
-    var queryString = './search-results.html?q=' + searchInputVal;
+    var queryString = './search-results.html?q=' + countryInputVal + '&city=' + cityInputVal;
 
     location.assign(queryString);
 }
 
 searchFormEl.addEventListener('submit', handleSearchFormSubmit);
 
-var lyricTextEl = document.querySelector('#lyric-text');
-var searchFormEl = document.querySelector('#search-form');
+var cityName = document.querySelector('#cityname');
+var countryName = document.querySelector('#countryname');
 
-function getSearchParamters() {
-    var searchParamters = document.location.search.split('&');
-
-    var query = searchParamters[0].split('=').pop;
-    searchApi(query);
+btn.addEventListener('click', function(event) {
+    event.preventDefault();
+    
 }
-
-function printLyrics(resultObj) {
-
-    var resultCard = document.createElement('div');
-    resultCard.classList.add('card');
-}
+)
 
 
 
