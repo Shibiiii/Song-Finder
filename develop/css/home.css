@@ -1,0 +1,123 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    background-image: url(/develop/images/genius-background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+p {
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+select {
+    background-color: white;
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 20px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+}
+
+
+
+
+button {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 150px;
+    height: 30px;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+
+}
+
+
+
+
+
+
+.card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(251, 253, 99);
+    border-radius: 15px;
+    border: ridge 4px black;
+    height: 750px;
+    width: 550px;
+}
+
+
+.header {
+    padding-bottom: 100px;
+    font-size: 30px;
+}
+
+
+.description {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 30px;
+}
+
+
+.inputEl {
+    padding-top: 0px;
+    padding-bottom: 90px;
+}
+
+
+.language {
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+
+.languageOps {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.generate {
+    padding-top: 80px;
+}
+
+
+#form-input {
+    border-radius: 5px;
+    width: 250px;
+    height: auto;
+    font-size: 25px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+
+
+
+
+button:hover {
+    background-color: rgb(226, 223, 223);
+   
+}
+
+
+select:hover {
+    background-color: rgb(226, 223, 223);
+   
+}
