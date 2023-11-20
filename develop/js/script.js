@@ -21,6 +21,13 @@ var btn= document.querySelector('#search');
 var datadiv3= document.querySelector(".datainfo3");
 var seconddiv= document.querySelector(".datainfo2");
 
+var searchamount= document.querySelector('#currency');
+
+var firstcountry = document.querySelector('#firstcountry');
+var secondcountry = document.querySelector('#secondcountry');
+var amount = document.querySelector('#amount');
+
+
 
 
 
@@ -252,6 +259,37 @@ function countrytime(city)
         seconddiv.appendChild(time);
 
     });
+}
+
+
+searchamount.addEventListener('click', function(event) {
+  event.preventDefault();
+  
+
+  var currency1 =firstcountry.value;
+  var currency2 =secondcountry.value;
+  var money = amount.value;
+
+  currencyconvert(currency1,currency2,money);
+
+});
+
+
+function currencyconvert(currency1,currency2,money)
+{
+
+   var request = 'https://api.api-ninjas.com/v1/convertcurrency?want=' + currency1 +'&have='+ currency2 +
+              '&amount='+ money +'&X-Api-Key='+ key;
+
+   fetch(request)
+    .then(function (response) {
+     return response.json();
+   })
+    .then(function (data) {
+     console.log(data);
+     amount.value = "New amount : " + data.new_amount;
+   });
+
 }
 
 
