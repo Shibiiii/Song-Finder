@@ -5,7 +5,8 @@ body {
     margin-top: 100px;
     background-image: url('../images/mapbackground.jpg');
 
-
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
@@ -71,7 +72,7 @@ button {
 }
 
 
-.find {
+.search {
     padding-top: 80px;
 }
 
