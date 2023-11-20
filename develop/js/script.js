@@ -5,40 +5,76 @@ var searchFormEl = document.querySelector('#search-form');
 function handleSearchFormSubmit(event) {
     event.preventDefault();
 
-    var searchInputVal = document.querySelector('#search-input').value;
-    var languageInputVal = document.querySelector('#language-input').value;
+    var countryInputVal = document.querySelector('#countryname').value;
+    var cityInputVal = document.querySelector('#cityname').value;
 
-    if (!searchInputVal) {
-        console.error('Input needed to continue');
+    if (!countryInputVal) {
+        console.error('Country needed to continue');
         return;
     }
-    if (!languageInputVal) {
-    console.error('Language needed to continue');
+    if (!cityInputVal) {
+    console.error('City needed to continue');
         return;
     }
 
-    var queryString = './search-results.html?q=' + searchInputVal;
-
-    location.assign(queryString);
 }
 
 searchFormEl.addEventListener('submit', handleSearchFormSubmit);
 
-var lyricTextEl = document.querySelector('#lyric-text');
-var searchFormEl = document.querySelector('#search-form');
+var cityName = document.querySelector('#cityname');
+var countryName = document.querySelector('#countryname');
+var btn = document.querySelector(".btn");
+var index = 1;
 
-function getSearchParamters() {
-    var searchParamters = document.location.search.split('&');
+while(JSON.parse(localStorage.getItem("index"+index))!== null)
+{
+    var newbtn = document.createElement("button");
 
-    var query = searchParamters[0].split('=').pop;
-    searchApi(query);
+    newbtn.setAttribute("class","btn");
+    newbtn.setAttribute("id","index"+index);
+    newbtn.textContent= JSON.parse(localStorage.getItem("index"+index));
+
+    divdata.appendChild(newbtn);
+
+    index++;
 }
 
-function printLyrics(resultObj) {
+btn.addEventListener('click', function(event) {
+    event.preventDefault();
+    var city = cityName.value;
+    getApiData(city);
+});
 
-    var resultCard = document.createElement('div');
-    resultCard.classList.add('card');
+function getApiData(city) {
+    var geocodingUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=a9f48eaca2ef1bc28989582adf1daa56';
+
+    fetch(geocodingUrl).then(function(response) {
+        return response.json(); 
+    }).then(function(data) {
+        var weatherUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + data[0].lat +'&lon=' + data[0].lon +'&appid=a9f48eaca2ef1bc28989582adf1daa56&units=imperial';
+
+        fetch(weatherUrl).then(function (response){
+            return response.json();
+        }).then(function(data) {
+            for(var i=0; i<=1; i++) {
+            var forecast = document.querySelector('#data-display' + (i+2));
+            var createText = document.createElement('p');
+            var tempData = data.list[i*8].main.temp;
+
+            createText.textContent = tempData + forecast;
+            }
+        })
+console.log(city);
+console.log(data);
+console.log(weatherUrl);
+    })
 }
+
+
+
+
+
+
 
 
 
