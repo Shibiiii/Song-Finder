@@ -17,9 +17,6 @@ function handleSearchFormSubmit(event) {
         return;
     }
 
-    // var queryString = './search-results.html?q=' + countryInputVal + '&city=' + cityInputVal;
-
-    // location.assign(queryString);
 }
 
 searchFormEl.addEventListener('submit', handleSearchFormSubmit);
@@ -49,12 +46,12 @@ btn.addEventListener('click', function(event) {
 });
 
 function getApiData(city) {
-    var geocodingUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city +'&appid=a9f48eaca2ef1bc28989582adf1daa56';
+    var geocodingUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=a9f48eaca2ef1bc28989582adf1daa56';
 
     fetch(geocodingUrl).then(function(response) {
         return response.json(); 
     }).then(function(data) {
-        var weatherUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat='+ data[0].lat +'&lon='+ data[0].lon+ '&appid=a9f48eaca2ef1bc28989582adf1daa56&units=imperial';
+        var weatherUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + data[0].lat +'&lon=' + data[0].lon +'&appid=a9f48eaca2ef1bc28989582adf1daa56&units=imperial';
 
         fetch(weatherUrl).then(function (response){
             return response.json();
@@ -71,6 +68,7 @@ console.log(city);
 console.log(data);
     })
 }
+
 
 
 
