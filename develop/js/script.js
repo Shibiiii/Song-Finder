@@ -36,7 +36,7 @@ btn.addEventListener('click', function(event) {
        getApiData(countryname);
        console.log("helooooo4");
     } 
-    else if(countryname ==="" && cityname ==="")
+    else if(countryname ==="" && cityname ==="") // else if statement for if both country and city filled out and reset value of country and city name
     {
       document.getElementById(countryname).reset(countryname);
       document.getElementById(cityname).reset(cityname);
@@ -58,6 +58,7 @@ btn.addEventListener('click', function(event) {
       //  return;
     //}
 
+    // attempt to display search data in search history
     var searchHistory = (localStorage.searchHistory) ? JSON.parse(localStorage.searchHistory) : [];
 document.querySelector("#search").addEventListener("click", () => {
   searchHistory.push(document.querySelector(".form-input").value);
