@@ -66,8 +66,10 @@ function getApiData(city) {
         })
 console.log(city);
 console.log(data);
+console.log(weatherUrl);
     })
 }
+
 
 
 
