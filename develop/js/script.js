@@ -121,8 +121,7 @@ function gitcountryapi(countryname)
   fetch(request2)
   .then(function (response) {
     return response.json();
-  })
-   .then(function (data) {
+  }) .then(function (data) {
     console.log(data);
 
     var seconddiv= document.querySelector(".datainfo2")
