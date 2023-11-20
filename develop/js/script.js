@@ -21,34 +21,35 @@ btn.addEventListener('click', function(event) {
     if(countryname !="" && cityname=="")
     {
        gitcountryapi(countryname);
+       getApiData(countryname);
        console.log("helooooo2");
     }
     else if(countryname=="" && cityname!="")
     {
        gitcityapi(cityname);
+       getApiData(cityname);
        console.log("helooooo3");
     }
     else if(countryname !="" && cityname !="")
     {
        gitcountryapi(countryname);
+       getApiData(countryname);
        console.log("helooooo4");
     }
 
-    var countryInputVal = document.querySelector('#countryname').value;
-    var cityInputVal = document.querySelector('#cityname').value;
+    //var countryInputVal = document.querySelector('#countryname').value;
+    //var cityInputVal = document.querySelector('#cityname').value;
 
-    if (!countryInputVal) {
-        console.error('Country needed to continue');
-        return;
-    }
-    if (!cityInputVal) {
-    console.error('City needed to continue');
-        return;
-    }
+   // if (!countryInputVal) {
+     //   console.error('Country needed to continue');
+       // return;
+    //}
+    //if (!cityInputVal) {
+    //console.error('City needed to continue');
+      //  return;
+    //}
 
-
-}
-);
+});
 
 //cityname
 
@@ -82,7 +83,7 @@ function gitcityapi(cityname)
     seconddiv.appendChild(country);
     seconddiv.appendChild(capital);
     seconddiv.appendChild(population);
-    //seconddiv.appendChild(currencycode);
+     //seconddiv.appendChild(currencycode);
     //seconddiv.appendChild(currencyname);
 
   });
@@ -126,31 +127,31 @@ function gitcountryapi(countryname)
 
 
 
-searchFormEl.addEventListener('submit', handleSearchFormSubmit);
+//searchFormEl.addEventListener('submit', handleSearchFormSubmit);
 
-var cityName = document.querySelector('#cityname');
-var countryName = document.querySelector('#countryname');
-var btn = document.querySelector(".btn");
-var index = 1;
+//var cityName2 = document.querySelector('#cityname');
+//var countryName2 = document.querySelector('#countryname');
+//var btn = document.querySelector(".btn");
+//var index = 1;
 
-while(JSON.parse(localStorage.getItem("index"+index))!== null)
-{
-    var newbtn = document.createElement("button");
+//while(JSON.parse(localStorage.getItem("index"+index))!== null)
+//{
+  //  var newbtn = document.createElement("button");
 
-    newbtn.setAttribute("class","btn");
-    newbtn.setAttribute("id","index"+index);
-    newbtn.textContent= JSON.parse(localStorage.getItem("index"+index));
+    //newbtn.setAttribute("class","btn");
+    //newbtn.setAttribute("id","index"+index);
+    //newbtn.textContent= JSON.parse(localStorage.getItem("index"+index));
 
-    divdata.appendChild(newbtn);
+    //divdata.appendChild(newbtn);
 
-    index++;
-}
+    //index++;
+//}
 
-btn.addEventListener('click', function(event) {
-    event.preventDefault();
-    var city = cityName.value;
-    getApiData(city);
-});
+//btn.addEventListener('click', function(event) {
+  //  event.preventDefault();
+    //var city = cityName.value;
+    //getApiData(city);
+//});
 
 function getApiData(city) {
     var geocodingUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=a9f48eaca2ef1bc28989582adf1daa56';
@@ -158,23 +159,30 @@ function getApiData(city) {
     fetch(geocodingUrl).then(function(response) {
         return response.json(); 
     }).then(function(data) {
+      console.log(data);
         var weatherUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=' + data[0].lat +'&lon=' + data[0].lon +'&appid=a9f48eaca2ef1bc28989582adf1daa56&units=imperial';
 
         fetch(weatherUrl).then(function (response){
             return response.json();
         }).then(function(data) {
-            for(var i=0; i<=1; i++) {
-            var forecast = document.querySelector('#data-display' + (i+2));
-            var createText = document.createElement('p');
-            var tempData = data.list[i*8].main.temp;
+          console.log(data);
+            var datadiv3= document.querySelector(".datainfo3")
+            for(var i=0; i<=5; i++) {
+            var createText = document.createElement('h2');
+            var da= data.list[i*8].main.humidity;
+            var da2= data.list[i*8].main.temp;
+            //var da3= data.list[i*8].wind.speed;
+            var da5= dayjs(data.list[i*8].dt_txt).format('DD/MM/YYYY');
 
-            createText.textContent = tempData + forecast;
+            createText.textContent = "Date : " + da5 + "     Tempruture : "+da2 + "     Humidity : "+da  ;
+            datadiv3.appendChild(createText);
+
             }
-        })
-console.log(city);
-console.log(data);
-console.log(weatherUrl);
-    })
+        });
+//console.log(city);
+//console.log(data);
+//console.log(weatherUrl);
+    });
 }
 
 
