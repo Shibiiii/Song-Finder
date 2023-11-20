@@ -35,7 +35,7 @@ btn.addEventListener('click', function(event) {
     event.preventDefault();
     cleardata();
     var countryname = countrynametext.value; 
-    var cityname=citynametext.value;
+    var cityname = citynametext.value;
 
     if(countryname !="" && cityname=="")
     {
@@ -53,6 +53,16 @@ btn.addEventListener('click', function(event) {
     {
        gitcountryapi(countryname);
        getApiData(countryname);
+       console.log("helooooo4");
+    } 
+    else if(countryname ==="" && cityname ==="") // else if statement for if both country and city filled out and reset value of country and city name
+    {
+      document.getElementById(countryname).reset(countryname);
+      document.getElementById(cityname).reset(cityname);
+      gitcountryapi(countryname);
+      getApiData(countryname);
+      gitcityapi(cityname);
+
        countrytime(cityname);
     }
 
@@ -67,6 +77,18 @@ btn.addEventListener('click', function(event) {
     //console.error('City needed to continue');
       //  return;
     //}
+
+    // attempt to display search data in search history
+    var searchHistory = (localStorage.searchHistory) ? JSON.parse(localStorage.searchHistory) : [];
+document.querySelector("#search").addEventListener("click", () => {
+  searchHistory.push(document.querySelector(".form-input").value);
+  localStorage.searchHistory = JSON.stringify(searchHistory);
+});
+document.querySelector(".form-input").addEventListener("focus", () => {
+  var data = document.querySelector("#data-display");
+  data.innerHTML = "";
+  searchHistory.forEach((search) => {
+    data.innerHTML = "" + data.innerHTML ; data.querySelector("option").innerText = search; }); });
 
 });
 
@@ -132,8 +154,7 @@ function gitcountryapi(countryname)
   fetch(request2)
   .then(function (response) {
     return response.json();
-  })
-   .then(function (data) {
+  }) .then(function (data) {
     console.log(data);
 
     var country= document.createElement("h2");
