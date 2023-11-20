@@ -10,5 +10,16 @@ THEN I get the result
 WHEN result is displayed
 THEN result contains country's flag and the city's weather report
 
+## Webpage URL
+
+
+### Webpage Screenshot
+
+## How to access files
+landing page:   html: travel-planner/develop/home.html
+                css: travel-planner/develop/css/home.css
+display page:   html: travel-planner/develop/travel.html
+                css: travel-planner/develop/css/travel.css
+javascript file:    travel-planner.develop/js/script.js
 # Description
 A repository of code that will allow a user to input a destination and be given helpful information like the weather, currency exchange, etc.
