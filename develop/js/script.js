@@ -49,6 +49,17 @@ btn.addEventListener('click', function(event) {
       //  return;
     //}
 
+    var searchHistory = (localStorage.searchHistory) ? JSON.parse(localStorage.searchHistory) : [];
+document.querySelector("#search").addEventListener("click", () => {
+  searchHistory.push(document.querySelector(".form-input").value);
+  localStorage.searchHistory = JSON.stringify(searchHistory);
+});
+document.querySelector(".form-input").addEventListener("focus", () => {
+  var data = document.querySelector("datalist#searchdata");
+  data.innerHTML = "";
+  searchHistory.forEach((search) => {
+    data.innerHTML = "" + data.innerHTML ; data.querySelector("option").innerText = search; }); });
+
 });
 
 //cityname
