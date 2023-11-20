@@ -12,7 +12,7 @@ var btn= document.querySelector('#search');
 btn.addEventListener('click', function(event) {
     event.preventDefault();
     var countryname = countrynametext.value; 
-    var cityname=citynametext.value;
+    var cityname = citynametext.value;
 
 
     console.log(countryname);
@@ -35,6 +35,15 @@ btn.addEventListener('click', function(event) {
        gitcountryapi(countryname);
        getApiData(countryname);
        console.log("helooooo4");
+    } 
+    else if(countryname ==="" && cityname ==="")
+    {
+      document.getElementById(countryname).reset(countryname);
+      document.getElementById(cityname).reset(cityname);
+      gitcountryapi(countryname);
+      getApiData(countryname);
+      gitcityapi(cityname);
+      getApiData(cityname);
     }
 
     //var countryInputVal = document.querySelector('#countryname').value;
@@ -55,7 +64,7 @@ document.querySelector("#search").addEventListener("click", () => {
   localStorage.searchHistory = JSON.stringify(searchHistory);
 });
 document.querySelector(".form-input").addEventListener("focus", () => {
-  var data = document.querySelector("datalist#searchdata");
+  var data = document.querySelector("#data-display");
   data.innerHTML = "";
   searchHistory.forEach((search) => {
     data.innerHTML = "" + data.innerHTML ; data.querySelector("option").innerText = search; }); });
