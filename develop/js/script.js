@@ -1,44 +1,114 @@
 
 
-var searchFormEl = document.querySelector('#search-form');
 
-function handleSearchFormSubmit(event) {
+////starting code for country name and some info
+
+var key ='QwdO2U2cadDxeEeGOfufOg==I8Vg1CzH5prgOFij';
+var countrynametext = document.querySelector('#countryname');
+var citynametext = document.querySelector('#cityname');
+var btn= document.querySelector('#search');
+
+
+btn.addEventListener('click', function(event) {
     event.preventDefault();
+    var countryname = countrynametext.value; 
+    var cityname=citynametext.value;
 
-    var searchInputVal = document.querySelector('#search-input').value;
-    var languageInputVal = document.querySelector('#language-input').value;
+    console.log(countryname);
+    console.log(cityname);
 
-    if (!searchInputVal) {
-        console.error('Input needed to continue');
-        return;
+    if(countryname !="" && cityname=="")
+    {
+       gitcountryapi(countryname);
+       console.log("helooooo2");
     }
-    if (!languageInputVal) {
-    console.error('Language needed to continue');
-        return;
+    else if(countryname=="" && cityname!="")
+    {
+       gitcityapi(cityname);
+       console.log("helooooo3");
     }
+    else if(countryname !="" && cityname !="")
+    {
+       gitcountryapi(countryname);
+       console.log("helooooo4");
+    }
+}
+);
 
-    var queryString = './search-results.html?q=' + searchInputVal;
+//cityname
 
-    location.assign(queryString);
+function gitcityapi(cityname)
+{
+  console.log("city name : " + cityname);
+
+    var request2 = 'https://api.api-ninjas.com/v1/city?name=' + cityname + '&X-Api-Key=' + key;
+  fetch(request2)
+  .then(function (response) {
+    return response.json();
+  })
+   .then(function (data) {
+    console.log(data);
+
+    var seconddiv= document.querySelector(".datainfo2")
+    var country= document.createElement("h2");
+    var city= document.createElement("h2");
+    var capital= document.createElement("h2");
+    var population= document.createElement("h2");
+    //var currencycode = document.createElement("h2")
+    //var currencyname = document.createElement("h2");
+    
+    city.textContent = "City Name : " + data[0].name;
+    country.textContent = "Country Name : " + data[0].name;
+    capital.textContent = "Cabital Name : " + data[0].is_capital;
+    population.textContent = "Population : "+ (data[0].population)/1000000 + "million";
+    //currencycode.textContent = "currency Code : " + data[0].currency.code;
+    //currencyname.textContent = "currency Name : " + data[0].currency.name;
+
+    seconddiv.appendChild(country);
+    seconddiv.appendChild(capital);
+    seconddiv.appendChild(population);
+    //seconddiv.appendChild(currencycode);
+    //seconddiv.appendChild(currencyname);
+
+  });
+
 }
 
-searchFormEl.addEventListener('submit', handleSearchFormSubmit);
+//countrynmae
 
-var lyricTextEl = document.querySelector('#lyric-text');
-var searchFormEl = document.querySelector('#search-form');
+function gitcountryapi(countryname)
+{
+  console.log("country name : " + countryname);
+    var request2 = 'https://api.api-ninjas.com/v1/country?name=' + countryname+ '&X-Api-Key=' + key;
+  fetch(request2)
+  .then(function (response) {
+    return response.json();
+  })
+   .then(function (data) {
+    console.log(data);
 
-function getSearchParamters() {
-    var searchParamters = document.location.search.split('&');
+    var seconddiv= document.querySelector(".datainfo2")
+    var country= document.createElement("h2");
+    var capital= document.createElement("h2");
+    var population= document.createElement("h2");
+    var currencycode = document.createElement("h2")
+    var currencyname = document.createElement("h2");
+    
+    country.textContent = "Country Name : " + data[0].name;
+    capital.textContent = "Cabital Name : " + data[0].capital;
+    population.textContent = "Population : "+ (data[0].population)/1000 + "million";
+    currencycode.textContent = "currency Code : " + data[0].currency.code;
+    currencyname.textContent = "currency Name : " + data[0].currency.name;
 
-    var query = searchParamters[0].split('=').pop;
-    searchApi(query);
+    seconddiv.appendChild(country);
+    seconddiv.appendChild(capital);
+    seconddiv.appendChild(population);
+    seconddiv.appendChild(currencycode);
+    seconddiv.appendChild(currencyname);
+  });
 }
 
-function printLyrics(resultObj) {
 
-    var resultCard = document.createElement('div');
-    resultCard.classList.add('card');
-}
 
 
 

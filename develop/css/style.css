@@ -9,17 +9,17 @@
 
 header{
   height: 150px;
-  background-image:url('../images/header.jpg');
+  /*background-image:url('../images/header.jpg');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover;*/
   border: 10px solid black;
   text-align: center;
 
 }
 body{
-  background-image:url('../images/background.jpg');
+  /*background-image:url('../images/background.jpg');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover;*/
 }
 
 .hero {
@@ -88,6 +88,13 @@ body{
   background-color: var(--light-dark);
 }
 
+.btn:hover {
+  color: var(--primary);
+  background-color: var(--tertiary);
+  transform: translate(0, 0);
+  box-shadow: 2px 2px var(--dark);
+}
+
 p{
   font-size: 20px;
   margin: 5px;
@@ -119,7 +126,6 @@ p{
 }
 
 .datainfo2{
-  height: 200px;
   background-color: brown;
 
 }
