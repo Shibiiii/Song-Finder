@@ -8,11 +8,11 @@ function handleSearchFormSubmit(event) {
     var countryInputVal = document.querySelector('#countryname').value;
     var cityInputVal = document.querySelector('#cityname').value;
 
-    if (!countryInputValInputVal) {
+    if (!countryInputVal) {
         console.error('Country needed to continue');
         return;
     }
-    if (!cityInputValInputVal) {
+    if (!cityInputVal) {
     console.error('City needed to continue');
         return;
     }
@@ -27,6 +27,19 @@ searchFormEl.addEventListener('submit', handleSearchFormSubmit);
 var cityName = document.querySelector('#cityname');
 var countryName = document.querySelector('#countryname');
 var index = 1;
+
+while(JSON.parse(localStorage.getItem("index"+index))!== null)
+{
+    var newbtn = document.createElement("button");
+
+    newbtn.setAttribute("class","btn");
+    newbtn.setAttribute("id","index"+index);
+    newbtn.textContent= JSON.parse(localStorage.getItem("index"+index));
+
+    divdata.appendChild(newbtn);
+
+    index++;
+}
 
 btn.addEventListener('click', function(event) {
     event.preventDefault();
