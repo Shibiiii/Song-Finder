@@ -14,7 +14,8 @@ THEN result contains country's flag and the city's weather report
 https://shibiiii.github.io/travel-planner/
 
 ### Webpage Screenshot
-![image](https://github.com/Shibiiii/travel-planner/assets/145889222/243c9223-1ef6-4799-85b5-69963ad6fbff)
+![image](https://github.com/Shibiiii/travel-planner/assets/145889222/b0d98df4-7317-481c-a7c4-b458930ace3a)
+
 
 ## How to access files
 landing page:   html: travel-planner/develop/home.html
