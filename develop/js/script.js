@@ -27,6 +27,8 @@ var firstcountry = document.querySelector('#firstcountry');
 var secondcountry = document.querySelector('#secondcountry');
 var amount = document.querySelector('#amount');
 
+var checkssearch= 0;
+
 
 
 
@@ -34,41 +36,41 @@ var amount = document.querySelector('#amount');
 btn.addEventListener('click', function(event) {
     event.preventDefault();
     cleardata();
-    var countryname = countrynametext.value; 
+    startnewsearch();
+
+});
+
+function startnewsearch()
+{
+  var countryname = countrynametext.value; 
     var cityname=citynametext.value;
 
     if(countryname !="" && cityname=="")
     {
+       checkssearch = 1;
        gitcountryapi(countryname);
        getApiData(countryname);
        countrytime(countryname);
+       savecityname(countryname);
     }
     else if(countryname=="" && cityname!="")
     {
+       checkssearch=2;
        gitcityapi(cityname);
        getApiData(cityname);
        countrytime(cityname);
+       savecityname(cityname);
     }
     else if(countryname !="" && cityname !="")
     {
+      checkssearch=2;
        gitcountryapi(countryname);
        getApiData(countryname);
        countrytime(cityname);
+       savecityname(cityname);
     }
 
-    //var countryInputVal = document.querySelector('#countryname').value;
-    //var cityInputVal = document.querySelector('#cityname').value;
-
-   // if (!countryInputVal) {
-     //   console.error('Country needed to continue');
-       // return;
-    //}
-    //if (!cityInputVal) {
-    //console.error('City needed to continue');
-      //  return;
-    //}
-
-});
+}
 
 //cityname
 
@@ -172,33 +174,6 @@ function gitcountryapi(countryname)
 }
 
 
-
-//searchFormEl.addEventListener('submit', handleSearchFormSubmit);
-
-//var cityName2 = document.querySelector('#cityname');
-//var countryName2 = document.querySelector('#countryname');
-//var btn = document.querySelector(".btn");
-//var index = 1;
-
-//while(JSON.parse(localStorage.getItem("index"+index))!== null)
-//{
-  //  var newbtn = document.createElement("button");
-
-    //newbtn.setAttribute("class","btn");
-    //newbtn.setAttribute("id","index"+index);
-    //newbtn.textContent= JSON.parse(localStorage.getItem("index"+index));
-
-    //divdata.appendChild(newbtn);
-
-    //index++;
-//}
-
-//btn.addEventListener('click', function(event) {
-  //  event.preventDefault();
-    //var city = cityName.value;
-    //getApiData(city);
-//});
-
 function getApiData(city) {
     var geocodingUrl = 'https://api.openweathermap.org/geo/1.0/direct?q=' + city + '&appid=a9f48eaca2ef1bc28989582adf1daa56';
 
@@ -291,6 +266,149 @@ function currencyconvert(currency1,currency2,money)
    });
 
 }
+
+// start code for save data with next and back button
+
+var searchdiv = document.querySelector(".searchHistory")
+var index=1;
+var index2 = 1;
+ 
+while(JSON.parse(localStorage.getItem("index"+index))!== null)
+{
+  var newbtn = document.createElement("button");
+
+  newbtn.setAttribute("class","btn");
+  newbtn.setAttribute("id","index"+index);
+  newbtn.textContent= JSON.parse(localStorage.getItem("index"+index));
+  searchdiv.appendChild(newbtn);
+
+  index++;
+}
+
+
+function savecityname(city)
+{
+
+  for(var i=1;i<=index;i++)
+  {
+    if(JSON.parse(localStorage.getItem("index"+i)) == city)
+    {
+      return;
+    }
+  }
+ 
+ 
+  localStorage.setItem("index"+index, JSON.stringify(city+checkssearch));
+
+  var newbtn = document.createElement("button");
+
+  newbtn.setAttribute("class","btn")
+  newbtn.setAttribute("id","index"+index);
+  newbtn.textContent= city;
+  
+  divdata.appendChild(newbtn);
+
+  index++;
+}
+
+searchdiv.addEventListener("click", function(event){
+  cleardata();
+  var element = event.target;
+
+  if(element.matches("button")===true) 
+  {
+    var x = JSON.parse(localStorage.getItem(element.id))
+    // how i know if country or city getApiData(resetcity);
+    var y = x.charAt(x.length-1);
+    var z= x.slice(0,x.length-1);
+    if(y=="1")
+      {
+        gitcountryapi(z);
+        getApiData(z);
+        countrytime(z);
+        index2++;
+      }
+      else
+      {
+        gitcityapi(z);
+        getApiData(z);
+        countrytime(z);
+        index2++;
+      }
+
+  }
+  
+});
+
+clearbtn.addEventListener("click", function(event){
+  //startnewsearch();
+  var element = event.target;
+
+  window.localStorage.clear();
+  window.location.reload();
+
+  
+  
+});
+
+var nextback= document.querySelector(".buttons");
+
+nextback.addEventListener("click", function(event){
+  cleardata();
+
+  var element = event.target;
+
+  var x = JSON.parse(localStorage.getItem("index"+ index2));
+  var y = x.charAt(x.length-1);
+  var z= x.slice(0,x.length-1);
+ 
+  if(element.matches("button")===true && element.getAttribute('id') === "back")
+  {
+      if(y=="1")
+      {
+        gitcountryapi(z);
+        getApiData(z);
+        countrytime(z);
+        index2--;
+      }
+      else
+      {
+        gitcityapi(z);
+        getApiData(z);
+        countrytime(z);
+        index2--;
+      }
+  }
+  else if(element.matches("button")===true && element.getAttribute('id') === "next")
+  {
+    if(y=="1")
+      {
+        gitcountryapi(z);
+        getApiData(z);
+        countrytime(z);
+        index2++;
+      }
+      else
+      {
+        gitcityapi(z);
+        getApiData(z);
+        countrytime(z);
+        index2++;
+      }
+  }
+
+  if(element.matches("button")===true) 
+  {
+    var resetcity = JSON.parse(localStorage.getItem(element.id))
+    // how i know if country or city getApiData(resetcity);
+    alert("hellooooo");
+
+  }
+  
+});
+
+
+
 
 
 
