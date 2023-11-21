@@ -11,9 +11,10 @@ WHEN result is displayed
 THEN result contains country's flag and the city's weather report
 
 ## Webpage URL
-
+https://shibiiii.github.io/travel-planner/
 
 ### Webpage Screenshot
+![image](https://github.com/Shibiiii/travel-planner/assets/145889222/243c9223-1ef6-4799-85b5-69963ad6fbff)
 
 ## How to access files
 landing page:   html: travel-planner/develop/home.html
