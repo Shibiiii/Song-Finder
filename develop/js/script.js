@@ -26,6 +26,7 @@ var searchamount= document.querySelector('#currency');
 var firstcountry = document.querySelector('#firstcountry');
 var secondcountry = document.querySelector('#secondcountry');
 var amount = document.querySelector('#amount');
+var clearbtn = document.querySelector('#cleanhistory');
 
 var checkssearch= 0;
 
@@ -44,9 +45,6 @@ function startnewsearch()
 {
   var countryname = countrynametext.value; 
     var cityname=citynametext.value;
-
-    var countryname = countrynametext.value; 
-    var cityname = citynametext.value;
 
 
     if(countryname !="" && cityname=="")
@@ -72,17 +70,6 @@ function startnewsearch()
        getApiData(countryname);
        console.log("helooooo4");
     } 
-    else if(countryname ==="" && cityname ==="") // else if statement for if both country and city filled out and reset value of country and city name
-    {
-      document.getElementById(countryname).reset(countryname);
-      document.getElementById(cityname).reset(cityname);
-      gitcountryapi(countryname);
-      getApiData(countryname);
-      gitcityapi(cityname);
-
-       countrytime(cityname);
-       savecityname(cityname);
-    }
 
 
 }
@@ -93,7 +80,7 @@ function startnewsearch()
 
 function gitcityapi(cityname)
 {
-  console.log("city name : " + cityname);
+
 
     var request2 = 'https://api.api-ninjas.com/v1/city?name=' + cityname + '&X-Api-Key=' + key;
   fetch(request2)
@@ -131,7 +118,7 @@ function gitcityapi(cityname)
       if(countcode == countrycode[i])
       {
         var image= document.querySelector("img");
-        image.setAttribute("src","./images/flags/"+ countcode +".png");
+        image.setAttribute("src","./develop/images/flags/"+ countcode +".png");
         i=countrycode;
       }
     }
@@ -146,7 +133,6 @@ function gitcityapi(cityname)
 
 function gitcountryapi(countryname)
 {
-  console.log("country name : " + countryname);
     var request2 = 'https://api.api-ninjas.com/v1/country?name=' + countryname+ '&X-Api-Key=' + key;
   fetch(request2)
   .then(function (response) {
@@ -332,8 +318,7 @@ searchdiv.addEventListener("click", function(event){
 
   if(element.matches("button")===true) 
   {
-    var x = JSON.parse(localStorage.getItem(element.id))
-    // how i know if country or city getApiData(resetcity);
+    var x = JSON.parse(localStorage.getItem(element.id));
     var y = x.charAt(x.length-1);
     var z= x.slice(0,x.length-1);
     if(y=="1")
@@ -341,14 +326,12 @@ searchdiv.addEventListener("click", function(event){
         gitcountryapi(z);
         getApiData(z);
         countrytime(z);
-        index2++;
       }
       else
       {
         gitcityapi(z);
         getApiData(z);
         countrytime(z);
-        index2++;
       }
 
   }
@@ -414,9 +397,9 @@ nextback.addEventListener("click", function(event){
 
   if(element.matches("button")===true) 
   {
-    var resetcity = JSON.parse(localStorage.getItem(element.id))
-    // how i know if country or city getApiData(resetcity);
-    alert("hellooooo");
+    var x = JSON.parse(localStorage.getItem(element.id));
+    var y = x.charAt(x.length-1);
+    var z= x.slice(0,x.length-1);
 
   }
   
