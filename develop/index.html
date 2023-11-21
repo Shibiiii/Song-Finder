@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/w3.css"/>
     <link rel="stylesheet" href="./css/style.css"/>
     <title>Travel Planner</title>
 </head>
@@ -10,24 +11,55 @@
   <header class="header">
     <h1 class="app-title">Travel Planner</h1>
   </header>
-  <main class="container">
-    <section class="sidebar">
+  <main >
+    <div class="w3-row-padding">
+        <section class="sidebar w3-col" style="width: 320px;">
+            <div class="description">
+                <p>Where are you traveling to?</p>
+            </div>
+        <form id="user-form" class="card-body">
+            <label > Country Name:</label>
+            <input name="countryname" id="countryname" type="text" autofocus="true" class="form-input" placeholder="France"/>
+            <label >City Name :</label>
+            <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input" placeholder="Paris" />
+            <button type="submit" class="btn" id="search">Search</button>
+        </form>
+
+        <div class="line"></div>
+
         <div class="description">
-            <p>Where are you traveling to?</p>
+            <p>Currency Converter:You can find the currency code in country information.</p>
         </div>
-    <form id="user-form" class="card-body">
-        <label > Country Name:</label>
-        <input name="countryname" id="countryname" type="text" autofocus="true" class="form-input" placeholder="France"/>
-        <label >City Name :</label>
-        <input name="cityname" id="cityname" type="text" autofocus="true" class="form-input" placeholder="Paris" />
-        <button type="submit" class="btn" id="search">Search</button>
-    </form>
+        <form id="user-form" class="card-body">
+            <label >First Country Currency Code:</label>
+            <input name="firstcountry" id="firstcountry" type="text" autofocus="true" class="form-input" placeholder="USD"/>
+            <label >Second Country Currency Code:</label>
+            <input name="secondcountry" id="secondcountry" type="text" autofocus="true" class="form-input" placeholder="EUR" />
+            <label >Currency amount:</label>
+            <input name="amount" id="amount" type="text" autofocus="true" class="form-input" placeholder="0000" />
+            <button type="submit" class="btn" id="currency">Convert</button>
+        </form>
 
-    <div class="line"></div>
-
-    <div class="description">
-        <p>Currency Converter , Can find the currency code in country informaatin</p>
+            <div class="line"></div>
+            <div class="searchHistory">
+                <p><u>Search History</u></p>
+            </div>
+        
+        </section>
+        <section class="resultContent w3-rest">
+            <div class="dataInfo1" id="info1">
+                <img src="./images/AR.png"/>
+            </div>
+            <div class="datainfo2" id="info2"></div>
+            <div class="datainfo3" id="info3"></div>
+            <div class="datainfo4" id="info4"></div>
+            <div class="buttons">
+                <button type="click" class="btn">Next</button>
+                <button type="click" class="btn">Back</button>
+            </div> 
+        </section>
     </div>
+
     <form id="user-form" class="card-body">
         <label > First Country Currency Code:</label>
         <input name="firstcountry" id="firstcountry" type="text" autofocus="true" class="form-input" placeholder="USD"/>

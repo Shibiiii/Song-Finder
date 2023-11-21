@@ -20,18 +20,12 @@ body{
     background-size: auto;
 }
 
-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-}
-
 button {
     margin-top: 10px;
     margin-bottom: 10px;
     display: flex;
     justify-content: center;
+    align-items: center;
     padding-bottom: 2px;
     background-color: rgba(243, 233, 233, 0.829);
     color: black;
@@ -73,7 +67,7 @@ button {
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
-  width: 300px;
+  width: 320px;
   height: auto;
   background-color: var(--primary);
   border: 5px ridge black;
@@ -82,6 +76,7 @@ button {
   align-items: flex-start;
   padding-left: 6px;
   padding-top: 6px;
+  margin-right: 20px;
 }
 
 .line {
@@ -94,26 +89,17 @@ p{
   margin: 5px;
 }
 
-.container{
-    width: 98%;
-    height: 300px;
-    
-   /* margin: 40px auto;*/
-    display: grid;
-    grid-template-columns: 20% 78%;
-    gap: 2%;
-}
 
 .resultContent{
     text-align: center;
     margin-top: 10px;
-    width: 100%;
     height: auto;
     background-color:var(--background);
     border: 5px dotted black;
     display: flex;
     flex-direction: column;
     align-items: center;
+    
    /* margin: 40px auto;*/
   
   }
@@ -146,6 +132,8 @@ p{
 
 .buttons {
     display: flex;
+    align-items: center;
+    justify-self: center;
     flex-direction: row;
 }
 
