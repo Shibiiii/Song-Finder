@@ -87,31 +87,6 @@ function startnewsearch()
 
 }
 
-    //var countryInputVal = document.querySelector('#countryname').value;
-    //var cityInputVal = document.querySelector('#cityname').value;
-
-   // if (!countryInputVal) {
-     //   console.error('Country needed to continue');
-       // return;
-    //}
-    //if (!cityInputVal) {
-    //console.error('City needed to continue');
-      //  return;
-    //}
-
-    // attempt to display search data in search history
-    var searchHistory = (localStorage.searchHistory) ? JSON.parse(localStorage.searchHistory) : [];
-document.querySelector("#search").addEventListener("click", () => {
-  searchHistory.push(document.querySelector(".form-input").value);
-  localStorage.searchHistory = JSON.stringify(searchHistory);
-});
-document.querySelector(".form-input").addEventListener("focus", () => {
-  var data = document.querySelector("#data-display");
-  data.innerHTML = "";
-  searchHistory.forEach((search) => {
-    data.innerHTML = "" + data.innerHTML ; data.querySelector("option").innerText = search; }); });
-
-});
 
 
 //cityname
@@ -204,10 +179,9 @@ function gitcountryapi(countryname)
       if(countcode == countrycode[i])
       {
         var image= document.querySelector("img");
-        image.setAttribute("src","./images/flags/"+ countcode +".png");
+        image.setAttribute("src","./develop/images/flags/"+ countcode +".png");
         i=countrycode;
       }
-
     
     }
 
